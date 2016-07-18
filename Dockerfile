@@ -1,30 +1,20 @@
-FROM debian:latest
+FROM alpine:latest
 
 MAINTAINER Secbone <secbone@gmail.com>
-
-ENV DEPENDENCIES build-essential autoconf libtool libssl-dev git-core
-ENV NORECOMMENDS asciidoc xmlto
-ENV BASEDIR /tmp/shadowsocks-libev
 
 EXPOSE 8388
 
 # Set up building environment
-RUN apt-get update
-RUN apt-get install -y $DEPENDENCIES
-RUN apt-get install -y $NORECOMMENDS --no-install-recommends
+RUN apk --no-cache add --virtual build-dep make gcc libc-dev linux-headers autoconf libtool openssl-dev git asciidoc xmlto && \
+    git clone https://github.com/shadowsocks/shadowsocks-libev.git /tmp/shadowsocks-libev && \
+    cd /tmp/shadowsocks-libev && \
+    ./configure && \
+    make -j4 && \
+    make install && \
+    cd /etc/init.d && \
+    rm -rf /tmp/shadowsocks-libev && \
+    apk del build-dep
 
-# Get the latest code, build and install
-RUN git clone https://github.com/shadowsocks/shadowsocks-libev.git $BASEDIR
-WORKDIR $BASEDIR
-RUN ./configure
-RUN make -j4
-RUN make install
-
-WORKDIR /etc/init.d
-
-# Tear down building environment and delete git repository
-RUN rm -rf $BASEDIR
-RUN apt-get --purge autoremove -y $DEPENDENCIES $NORECOMMENDS
 
 ADD config.json /conf/shadowsocks.json
 
