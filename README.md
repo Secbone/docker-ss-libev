@@ -2,6 +2,11 @@
 
 A mini docker image of Shadowsocks-libev only 15M in size.
 
+## Tags
+
+- `2.4.6`
+- `2.4.7`, `latest`
+
 ## Usage
 
 ```
