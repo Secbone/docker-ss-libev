@@ -1,5 +1,7 @@
 # Shadowsocks-libev for Docker
 
+A mini docker image for Shadowsocks-libev only 15M in size.
+
 ## Usage
 
 ```
