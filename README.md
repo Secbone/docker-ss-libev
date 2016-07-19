@@ -1,6 +1,6 @@
 # Shadowsocks-libev for Docker
 
-A mini docker image for Shadowsocks-libev only 15M in size.
+A mini docker image of Shadowsocks-libev only 15M in size.
 
 ## Usage
 
