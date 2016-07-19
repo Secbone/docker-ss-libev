@@ -1,21 +1,24 @@
-FROM alpine:latest
+FROM alpine
 
 MAINTAINER Secbone <secbone@gmail.com>
 
-EXPOSE 8388
+ENV SS_VERSION 2.4.6
+ENV SS_URL https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VERSION.tar.gz
+ENV SS_DIR shadowsocks-libev-$SS_VERSION
+ENV SS_DEPENDENCE make gcc libc-dev autoconf libtool linux-headers openssl-dev asciidoc xmlto curl
+ENV SS_PORT 8388
 
-# Set up building environment
-RUN apk --no-cache add --virtual build-dep make gcc libc-dev linux-headers autoconf libtool openssl-dev git asciidoc xmlto && \
-    git clone https://github.com/shadowsocks/shadowsocks-libev.git /tmp/shadowsocks-libev && \
-    cd /tmp/shadowsocks-libev && \
+RUN apk --no-cache add --virtual ss-depd $SS_DEPENDENCE && \
+    curl -L $SS_URL | tar -zxv && \
+    cd $SS_DIR && \
     ./configure && \
-    make -j4 && \
     make install && \
-    cd /etc/init.d && \
-    rm -rf /tmp/shadowsocks-libev && \
-    apk del build-dep
-
+    cd .. && \
+    rm -rf $SS_DIR && \
+    apk del ss-depd
 
 ADD config.json /conf/shadowsocks.json
 
-ENTRYPOINT ss-server -u -c /conf/shadowsocks.json -p 8388
+EXPOSE $SS_PORT
+
+ENTRYPOINT ss-server -u -c /conf/shadowsocks.json -p $SS_PORT
