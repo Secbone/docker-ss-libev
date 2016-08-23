@@ -3,7 +3,7 @@
 [![Docker pulls][pulls-image]][pulls-url]
 [![Docker stars][stars-image]][stars-url]
 
-A mini docker image of Shadowsocks-libev only 15M in size.
+A mini docker image of [Shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev) only 15M in size.
 
 ## Tags
 
