@@ -2,8 +2,9 @@ FROM alpine
 
 MAINTAINER Secbone <secbone@gmail.com>
 
-ENV SS_VERSION 3.0.7
-ENV SS_URL https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VERSION.tar.gz
+ARG SS_VER=3.0.7
+ARG SS_URL=https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$SS_VER/shadowsocks-libev-$SS_VER.tar.gz
+
 ENV SS_PORT 8388
 
 RUN set -ex && \
@@ -14,6 +15,7 @@ RUN set -ex && \
                                 libev-dev \
                                 libtool \
                                 linux-headers \
+                                udns-dev \
                                 libsodium-dev \
                                 mbedtls-dev \
                                 pcre-dev \
@@ -39,4 +41,4 @@ ADD config.json /conf/shadowsocks.json
 
 EXPOSE $SS_PORT/tcp $SS_PORT/udp
 
-ENTRYPOINT ss-server -u -c /conf/shadowsocks.json -p $SS_PORT
+ENTRYPOINT ss-server --fast-open -u -c /conf/shadowsocks.json -p $SS_PORT
