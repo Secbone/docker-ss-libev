@@ -10,9 +10,9 @@ A mini docker image of [Shadowsocks-libev](https://github.com/shadowsocks/shadow
 
 - `2.4.6`
 - ...
-- `3.0.8`
 - `3.1.0`
-- `3.1.1`, `latest`
+- `3.1.1`
+- `3.1.2`, `latest`
 
 ## Usage
 
