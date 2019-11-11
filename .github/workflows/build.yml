@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Test Build Image
 on: [push]
 
 jobs:
@@ -6,6 +6,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@master
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag docker-ss-libev:$(date +%s)
