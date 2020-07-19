@@ -40,4 +40,4 @@ docker run -d -v /path/to/config.json:/conf/shadowsocks.json -p <yourport>:8388 
 [stars-image]: https://img.shields.io/docker/stars/secbone/docker-ss-libev.svg?style=flat-square
 [size-image]: https://images.microbadger.com/badges/image/secbone/docker-ss-libev.svg
 [size-url]: https://microbadger.com/images/secbone/docker-ss-libev
-[build-image]: https://img.shields.io/docker/build/secbone/docker-ss-libev.svg?style=flat-square
+[build-image]: https://img.shields.io/docker/cloud/build/secbone/docker-ss-libev.svg?style=flat-square
