@@ -11,9 +11,9 @@ A mini docker image of [Shadowsocks-libev](https://github.com/shadowsocks/shadow
 
 - `2.4.6`
 - ...
-- `3.3.2`
 - `3.3.3`
-- `3.3.4`, `latest`
+- `3.3.4`
+- `3.3.5`, `latest`
 
 ## Usage
 
